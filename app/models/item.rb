@@ -7,6 +7,11 @@ class Item < ApplicationRecord
   has_many :ownerships
   has_many :users, through: :ownerships
   
+  # 課題で追加：class_name化
   has_many :wants
-  has_many :want_users, through: :wants, source: :user
+  has_many :want_users, through: :wants, class_name: 'User', source: :user
+  
+  # 課題で追加：have機能
+  has_many :haves, class_name: 'Have'
+  has_many :have_users, through: :haves, class_name: 'User', source: :user
 end
